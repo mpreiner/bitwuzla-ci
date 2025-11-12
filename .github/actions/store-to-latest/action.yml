@@ -21,7 +21,7 @@ runs:
         ext="${PACKAGE##*.}"
         commit_date=$(gh api repos/${repo}/commits/${sha} --jq '.commit.committer.date' | cut -d'T' -f1)
         # Construct filename
-        filename="${name}-${commit_date}-${sha:0:7}.${ext}"
+        filename="${name}-latest.${ext}"
         echo "Generated filename: $filename"
         RENAMED_PACKAGE=$(dirname "$PACKAGE")/$filename
         mv -- "$PACKAGE" "$RENAMED_PACKAGE"
