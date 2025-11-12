@@ -3,8 +3,8 @@ description: Store an asset on the release page associated to the latest tag
 inputs:
   asset-filename:
     description: filename of the asset
-  github-token:
-    description: token to upload asset to latest
+  shell:
+    default: bash
 
 runs:
   using: composite
@@ -12,7 +12,7 @@ runs:
     - name: Store to latest
       shell: ${{ inputs.shell }}
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_TOKEN: ${{ github.token }}
         PACKAGE: ${{ inputs.asset-filename }}
       run: |
         sha="${GITHUB_SHA}"
