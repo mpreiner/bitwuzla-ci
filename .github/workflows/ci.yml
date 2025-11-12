@@ -78,7 +78,6 @@ jobs:
           update: true
           install: >-
             git
-            zip
             mingw-w64-x86_64-ca-certificates
             mingw-w64-x86_64-cython
             mingw-w64-x86_64-gcc
@@ -88,7 +87,6 @@ jobs:
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-python3
             mingw-w64-x86_64-python-pytest
-            mingw-w64-x86_64-python-pip
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -124,7 +122,6 @@ jobs:
         if: matrix.package-name && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         uses: ./.github/actions/add-package
         with:
-          shell: ${{ matrix.shell || 'bash'}}
           build-dir: ${{ steps.build.outputs.build-dir }}
           package-name: ${{ matrix.package-name }}-static
           # when using GITHUB_TOKEN, no further workflows are triggered
