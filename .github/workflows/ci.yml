@@ -123,6 +123,7 @@ jobs:
         if: matrix.package-name && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         uses: ./.github/actions/add-package
         with:
+          shell: ${{ matrix.shell || 'bash'}}
           build-dir: ${{ steps.build.outputs.build-dir }}
           package-name: ${{ matrix.package-name }}-static
           # when using GITHUB_TOKEN, no further workflows are triggered
