@@ -9,8 +9,6 @@ inputs:
     description: token to upload package to latest
   github-token-release:
     description: token to upload package to release
-  shell:
-    default: bash
 outputs:
   install-path:
     description: path to the installation directory
@@ -20,7 +18,6 @@ runs:
   steps:
     - name: Create ZIP file
       id: create-zip
-      shell: ${{ inputs.shell }}
       run: |
         echo "::group::Create ZIP file"
 
@@ -45,7 +42,6 @@ runs:
         echo "::endgroup::"
 
     - name: Install pyGithub
-      shell: ${{ inputs.shell }}
       run: |
         # Upgrading pyopenssl resolves the following error:
         # AttributeError:
